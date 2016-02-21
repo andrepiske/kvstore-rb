@@ -46,6 +46,17 @@ describe Kvstore::Database do
         db['qux']
       end
     end
+
+    it 'returns default value when using #fetch' do
+      file_name = pre_filled_db_path
+      db = Kvstore::Database.new(file_name)
+
+      refute_nil db
+      assert_raises 'Kvstore::NoKeyError' do
+        db['xpto']
+      end
+      assert_equal 42, db.fetch('xpto', 42)
+    end
   end
 
   describe 'overwriting smaller keys' do

@@ -19,6 +19,12 @@ module Kvstore
       @engine.get(key)
     end
 
+    def fetch(key, default_value=nil)
+      self[key]
+    rescue ::Kvstore::NoKeyError
+      default_value
+    end
+
     def flush
       @engine.flush
     end
