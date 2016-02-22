@@ -36,6 +36,23 @@ describe Kvstore::Database do
     end
   end
 
+  describe 'encodings' do
+    it 'works with utf-8' do
+      file_name = pre_filled_db_path
+      db = Kvstore::Database.new(file_name)
+
+      refute_nil db
+      db['good'] = '良い悪いと醜いを'
+      assert_equal '良い悪いと醜いを', db['good']
+
+      db.close
+      db = Kvstore::Database.new(file_name)
+      refute_nil db
+
+      assert_equal '良い悪いと醜いを', db['good']
+    end
+  end
+
   describe 'fetching an unexistant key' do
     it 'raises an error' do
       file_name = pre_filled_db_path

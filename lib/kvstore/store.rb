@@ -63,7 +63,9 @@ module Kvstore
     end
 
     def unserialize_value(bin_val)
-      JSON.load(bin_val.encode('utf-8'))
+      utf_val = bin_val
+      utf_val.force_encoding('utf-8')
+      JSON.load(utf_val)
     end
 
     def read_key_from_file(key)
