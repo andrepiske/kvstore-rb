@@ -1,3 +1,8 @@
+# This file is part of Kvstore
+# (2016) André Diego Piske
+# https://github.com/andrepiske/kvstore-rb
+# See LICENSE file for the license
+#
 require 'set'
 require 'json'
 
@@ -10,7 +15,7 @@ module Kvstore
   # (key length)-bytes of key string
   # (data length)-bytes of data
   # (reserved length - data length)-bytes of null padding
-  
+
   class BasicStore
     class NoObject; end
 
@@ -100,7 +105,7 @@ module Kvstore
       key_bin = key.b
       key_len = key_bin.length
 
-      key_index = @index[key] 
+      key_index = @index[key]
       just_write = proc do
         @data_f.seek(key_index[0] + 4, :SET)
         @data_f.write([ val_len ].pack('L<'))
@@ -183,7 +188,7 @@ module Kvstore
         @data_f = File.open(data_name, 'r+b', autoclose: false)
         @index_f = File.open(index_name, 'r+b', autoclose: false)
       rescue Errno::ENOENT
-        if @data_f 
+        if @data_f
           @data_f.close
           @data_f = nil
         end
@@ -204,4 +209,3 @@ module Kvstore
     end
   end
 end
-

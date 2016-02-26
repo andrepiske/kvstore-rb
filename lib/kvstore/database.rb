@@ -1,4 +1,8 @@
-
+# This file is part of Kvstore
+# (2016) André Diego Piske
+# https://github.com/andrepiske/kvstore-rb
+# See LICENSE file for the license
+#
 module Kvstore
   class Database
     attr_reader :filename
@@ -34,4 +38,3 @@ module Kvstore
     end
   end
 end
-

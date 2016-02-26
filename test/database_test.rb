@@ -1,3 +1,8 @@
+# This file is part of Kvstore
+# (2016) André Diego Piske
+# https://github.com/andrepiske/kvstore-rb
+# See LICENSE file for the license
+#
 require 'minitest/autorun'
 require 'kvstore'
 require 'tempfile'
@@ -138,4 +143,3 @@ describe Kvstore::Database do
     path
   end
 end
-
